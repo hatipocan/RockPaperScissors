@@ -1,7 +1,7 @@
 // Script for a simple console playable Rock Papper Scissors game.
 
 alert("Welcome to Rock Paper Scissors game. Have fun :)");
-
+//comment
 // Get computer selection ( a random selection from array)
 function computerSelect() {
     let chooseArray = ['rock', 'paper', 'scissors'];
