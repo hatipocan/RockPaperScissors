@@ -1,7 +1,6 @@
 // Script for a simple console playable Rock Papper Scissors game.
 
-alert("Welcome to Rock Paper Scissors game. Have fun :)");
-//comment
+
 // Get computer selection ( a random selection from array)
 function computerSelect() {
     let chooseArray = ['rock', 'paper', 'scissors'];
@@ -16,94 +15,123 @@ function computerSelect() {
 
 }
 
-// compare user selection against computer selection
-// increase the score of winner party by 1 point
+const statusDiv = document.getElementsByClassName('round-status');
+const scoreBoard = document.getElementsByClassName('score-board');
+
+let playerSelect = "";
 
 let playerScore = 0;
 let computerScore = 0;
 
-function score () {
-    return (`Player: ${playerScore} - Computer: ${computerScore}`);
-}
+
+// a function which represents a game round comparing 
+// player's selection against computer selection
 
 function round (playerSelect, computer) {
-        if (playerSelect == computer) {
-            alert("it's a tie!!!")
+    if (playerSelect == computer) {
+        statusDiv[0].textContent = "it's a tie!!!";
+        scoreBoard[0].textContent =  `Player: ${playerScore} - Computer: ${computerScore}`;
 
-        } else if (playerSelect == "rock" && computer == "scissors") {
-            playerScore += 1;
-            alert(`Computer is Scissors. You win!!! 
-            ${score()} `);
-                  
-            
-        } else if (playerSelect == "rock" && computer == "paper") {
-            computerScore +=1;
-            alert(`Computer is Paper. Computer wins!!! 
-            ${score()}`);
-            
-            
-        } else if (playerSelect == "paper" && computer == "rock") {
-            playerScore += 1;
-            alert(`Computer is Rock. You win!!! 
-            ${score()}`);
-            
-            
-        } else if (playerSelect == "paper" && computer == "scissors") {
-            computerScore += 1;
-            alert(`Computer is Scissors. Computer wins!!! 
-            ${score()} `);
-            
-           
-        } else if (playerSelect == "scissors" && computer == "rock") {
-            computerScore +=1;
-            alert(`Computer is Rock. Computer wins!!! 
-            ${score()}`);
-            
-        } else if (playerSelect == "scissors" && computer =="paper") {
-            playerScore +=1;
-            alert(`Computer is Paper. You win!!! 
-            ${score()}`);
-            
-        } else {
-            alert("Please choose a valid weapon");
-        }
-}
-
-let gameState = true;
-
-// basic game loop which stops either computer or player hits to score 3
-
-while (gameState = true) {
-
-
-    // Get user Selection imputed to the console
-    let playerSelect = prompt(" Please choose your weapon(rock, paper or scissors): ").toLowerCase();
-    
-    const computer = computerSelect();
-
-    round(playerSelect, computer);
-
-    if (computerScore == 3 || playerScore == 3) {
-        gameState = false;
-        if (playerScore == 3){
-            alert("Game Over. You Win the Game!!!");
-            break;
-        } else {
-            alert("Game Over. You Lose the Game :(((");
-            break;
-        }
+    } else if (playerSelect == "rock" && computer == "scissors") {
+        playerScore += 1;
+        statusDiv[0].textContent = "Computer is Scissors. You win!!!";
+        scoreBoard[0].textContent =  `Player: ${playerScore} - Computer: ${computerScore}`;
+              
+        
+    } else if (playerSelect == "rock" && computer == "paper") {
+        computerScore +=1;
+        statusDiv[0].textContent = "Computer is Paper. Computer wins!!!"
+        scoreBoard[0].textContent =  `Player: ${playerScore} - Computer: ${computerScore}`;
+        
+        
+    } else if (playerSelect == "paper" && computer == "rock") {
+        playerScore += 1;
+        statusDiv[0].textContent = `Computer is Rock. You win!!!`;
+        scoreBoard[0].textContent =  `Player: ${playerScore} - Computer: ${computerScore}`;
+        
+        
+    } else if (playerSelect == "paper" && computer == "scissors") {
+        computerScore += 1;
+        statusDiv[0].textContent = `Computer is Scissors. Computer wins!!!`;
+        scoreBoard[0].textContent =  `Player: ${playerScore} - Computer: ${computerScore}`;
+        
+       
+    } else if (playerSelect == "scissors" && computer == "rock") {
+        computerScore +=1;
+        statusDiv[0].textContent = `Computer is Rock. Computer wins!!!`;
+        scoreBoard[0].textContent =  `Player: ${playerScore} - Computer: ${computerScore}`;
+        
+    } else if (playerSelect == "scissors" && computer =="paper") {
+        playerScore +=1;
+        statusDiv[0].textContent = `Computer is Paper. You win!!!`;
+        scoreBoard[0].textContent =  `Player: ${playerScore} - Computer: ${computerScore}`;
     }
+
+    if (computerScore == 3) {
+        alert(scoreBoard[0].textContent =  `Player: ${playerScore} - Computer: ${computerScore}
+Game Over You Lose :(((`);
+        location.reload();
+    } else if (playerScore == 3) {
+        alert(scoreBoard[0].textContent =  `Player: ${playerScore} - Computer: ${computerScore}
+Game Over You Win :)))`);
+        location.reload();
+
+    }
+    
 }
+
+// Get user Selection from button by adding eventListen and use the output.
+// fire the user selection and computer selection under the round function 
+// and display the raound status on status div as text
+
+
+const buttonRock = document.getElementById('myRock');
+buttonRock.addEventListener("click", () => {
+    playerSelect = "rock";
+    round(playerSelect, computerSelect());
+});
+
+const buttonPaper = document.getElementById('myPaper');
+buttonPaper.addEventListener("click", () => {
+    playerSelect = "paper";
+    round(playerSelect,computerSelect());
+});
+
+const buttonScissors = document.getElementById('myScissors');
+buttonScissors.addEventListener("click", () => {
+    playerSelect = "scissors";
+    round(playerSelect, computerSelect());
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // if statement for restarting the game or leave
 
-let restart = confirm("Would you like to play again?");
+// let restart = confirm("Would you like to play again?");
 
-if (restart == false) {
-    alert('Thanks for playing. Bye');
-    location.assign('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
-} else {
-    location.reload();
-}
+// if (restart == false) {
+//     alert('Thanks for playing. Bye');
+//     location.assign('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+// } else {
+//     location.reload();
+// }
 
 
